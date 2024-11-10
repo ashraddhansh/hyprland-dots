@@ -1,0 +1,158 @@
+@import "mocha.css";
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12pt;
+  font-weight: bold;
+  border-radius: 5px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+@keyframes blink_red {
+  to {
+    background-color: rgb(242, 143, 173);
+    color: rgb(26, 24, 38);
+  }
+}
+.warning, .critical, .urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 5;
+  animation-direction: alternate;
+}
+
+.modules-left, .modules-center {
+    opacity: 1;
+    background-color: @base;
+    border-radius: 0.5rem;
+    padding: 0px;
+}
+
+.modules-right {
+    opacity: 1;
+    background-color: @base;
+    border-radius: 0.5rem;
+    padding: 2px 2px 2px 10px
+}
+window#waybar {
+  background-color: transparent;
+}
+window > box {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+#workspaces {
+  padding-left: 2px;
+  padding-right: 0px;
+}
+#workspaces button {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
+  color: @text;
+}
+#workspaces button.focused {
+  background-color: @lavender;
+  color: rgb(26, 24, 38);
+}
+#workspaces button.active {
+  background: @rosewater;
+  color: @surface0;
+  animation: ws_normal 20s ease-in-out 1;
+}
+#workspaces button.urgent {
+  color: rgb(26, 24, 38);
+}
+#workspaces button:hover {
+  background-color: rgb(248, 189, 150);
+  color: rgb(26, 24, 38);
+}
+#window {
+  padding-right: 15px;
+  padding-left: 10px;
+}
+tooltip {
+  background: rgb(48, 45, 65);
+}
+tooltip label {
+  color: rgb(217, 224, 238);
+}
+#custom-launcher {
+  padding-left: 15px;
+  padding-right: 15px;
+  color: rgb(201, 203, 255);
+}
+#mode, #memory, #temperature,#cpu,#mpd, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-notification {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#clock {
+  padding-left: 15px;
+  padding-right: 10px;
+}
+#idle_inhibitor {
+  padding-right: 15px;
+  padding-left: 10px;
+}
+/* #mode { */
+/* 	margin-left: 10px; */
+/* 	background-color: rgb(248, 189, 150); */
+/*     color: rgb(26, 24, 38); */
+/* } */
+#memory {
+  color: @text;
+}
+#cpu {
+  color: @text;
+}
+#clock {
+  color: @rosewater;
+}
+#idle_inhibitor {
+  color: rgb(221, 182, 242);
+}
+#temperature {
+  color: rgb(150, 205, 251);
+}
+#backlight {
+  color: @text;
+}
+#pulseaudio {
+  color: @text;
+}
+#network {
+  color: @red;
+}
+
+#network.disconnected {
+  color: rgb(255, 255, 255);
+}
+#battery.charging, #battery.full, #battery.discharging {
+  color: rgb(250, 227, 176);
+}
+#battery.critical:not(.charging) {
+  color: rgb(242, 143, 173);
+}
+#custom-powermenu {
+  color: rgb(242, 143, 173);
+}
+#tray {
+  padding-right: 8px;
+  padding-left: 10px;
+}
+#mpd.paused {
+  color: #414868;
+  font-style: italic;
+}
+#mpd.stopped {
+  background: transparent;
+}
+#mpd {
+  color: #c0caf5;
+}
+#custom-cava-internal{
+  font-family: "Hack Nerd Font" ;
+}

@@ -1,0 +1,171 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+
+
+
+
+
+
+
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock",
+    "idle_inhibitor"
+  ],
+  "modules-right": [
+    "network",
+    "pulseaudio",
+    "backlight",
+    "memory",
+    "cpu",
+    "temperature",
+    "battery",
+    "tray",
+    "custom/notification"
+  ],
+  "custom/launcher": {
+    "format": "󰣇",
+    "on-click": "rofi -show drun",
+    "tooltip": false
+  },
+  "custom/notification": {
+    "format": "",
+    "on-click": "swaync-client -t -sw",
+    "tooltip": false
+  },
+  "custom/cava-internal": {
+    "exec": "~/.config/waybar/Cava.sh",
+    //"exec": "~/.config/waybar/cava-internal.sh",
+    "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1"
+  },
+  "hyprland/window": {
+    "max-length": 35,
+    "rewrite": {
+            "${USER}@${set_sysname}:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓",
+    }
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": false
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "on-scroll-up": "brightnessctl set 10+",
+    "on-scroll-down": "brightnessctl set 10-",
+    "format": "{icon} {percent}%",
+    "format-icons": ["","","",""]
+  },
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%", 
+    "format-muted": "婢 Muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": false,
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-full": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "tooltip": false
+  },
+  "clock": {
+    "on-click": "gnome-calendar",
+    "interval": 1,
+    "format": "{:%I:%M %p  %A %b %d}",
+    "tooltip": true,
+    /* "tooltip-format": "{:%A, %d %B %Y}\n<tt>{calendar}</tt>" */
+    "tooltip-format": "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>",
+  },
+  "memory": {
+    "interval": 1,
+    "format": "  {percentage}%",
+    "states": {
+      "warning": 85,
+    },
+  },
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%"
+  },
+  "mpd": {
+    "max-length": 25,
+    "format": "<span foreground='#bb9af7'></span> {title}",
+    "format-paused": " {title}",
+    "format-stopped":"<span foreground='#bb9af7'></span>",
+    "format-disconnected": "",
+    "on-click": "mpc --quiet toggle",
+    "on-click-right": "mpc ls | mpc add",
+    "on-click-middle": "kitty ncmpcpp",
+    "on-scroll-up": "mpc --quiet prev",
+    "on-scroll-down": "mpc --quiet next",
+    "smooth-scrolling-threshold":5,
+    "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+  },
+  "network": {
+    "interval": 1,
+    "format-wifi": "  {essid}",
+    "format-ethernet": "  {ifname}",
+    "format-linked": "說 {essid} (No IP)",
+    "format-disconnected": "說 Disconnected",
+    "on-click": "kitty -e nmtui",
+    "tooltip": false
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
+    //"critical-threshold": 80,
+    "tooltip": false,
+    "format": " {temperatureC}°C"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 7
+  },
+  "custom/left": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+  },
+  "custom/right": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+  },
+  "custom/mpris": {
+		"exec": "python3 -u ~/.local/bin/scrolling-mpris",
+		"format": "{}",
+		"return-type": "json",
+		"on-click": "playerctl play-pause"
+  }
+}
